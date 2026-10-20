@@ -1,0 +1,44 @@
+discoal Studio
+Copyright (C) 2026 Tanvir Anjum Joarder <tjoarder2026@fau.edu>
+
+discoal Studio was designed and written by Tanvir Anjum Joarder. It is free
+software: you can redistribute it and/or modify it under the terms of the GNU
+General Public License as published by the Free Software Foundation, either
+version 3 of the License, or (at your option) any later version (see LICENSE).
+
+Additional terms (GNU GPL version 3, section 7(b))
+--------------------------------------------------
+These terms apply to the parts of this program written by Tanvir Anjum Joarder.
+Anyone who conveys this program, or a work based on it, must preserve:
+
+  1. this NOTICE file and the copyright lines at the top of the source files;
+  2. the author attribution shown in the program's user interface (the
+     "by Tanvir Anjum Joarder" line under the app name, the footer, and the
+     "About & cite" dialog), or, in an interactive interface that does not have
+     these, an equivalent notice that is shown to the user;
+  3. the citation text the program writes into its outputs (manifest.json,
+     SLURM scripts and .npz files).
+
+A modified version must also say that it was modified, so it is not mistaken
+for the original.
+
+Citation (a request, not a license condition)
+----------------------------------------------
+If you use discoal Studio or data made with it in a publication, thesis or
+software, please cite it (see CITATION.cff) and discoal:
+
+  Joarder, T. A. (2026). discoal Studio: reproducible discoal selective-sweep
+  datasets on your own computer (version 0.2.0) [Computer software].
+
+  Kern, A. D. and Schrider, D. R. (2016). Discoal: flexible coalescent
+  simulations with selection. Bioinformatics 32(24):3839-3841.
+  doi:10.1093/bioinformatics/btw556
+
+To build on this work, please fork the repository rather than copying the code
+out of it, so the history keeps both your changes and the original authorship.
+
+Third-party software
+--------------------
+src/discoal_studio/vendor/discoal/ is discoal by Andrew D. Kern and Daniel R.
+Schrider, GPL-3.0 (see src/discoal_studio/vendor/discoal/LICENSE.txt). discoal
+Studio builds and runs discoal; the simulations themselves are discoal's.

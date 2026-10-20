@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 200" font-family="-apple-system,Segoe UI,Roboto,sans-serif">
+  <rect width="960" height="200" rx="14" fill="#f6f7f9"/>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0L10,5L0,10z" fill="#637083"/></marker>
+  </defs>
+  <g font-size="13" fill="#17202b">
+    <g transform="translate(20,40)">
+      <rect width="160" height="120" rx="10" fill="#fff" stroke="#dfe3ea"/>
+      <text x="14" y="28" font-weight="700" font-size="15">1 · You enter</text>
+      <text x="14" y="54">N, μ, r priors</text><text x="14" y="74">s, f₀, τ, demography</text><text x="14" y="94">classes + file counts</text>
+    </g>
+    <g transform="translate(210,40)">
+      <rect width="160" height="120" rx="10" fill="#fff" stroke="#dfe3ea"/>
+      <text x="14" y="28" font-weight="700" font-size="15">2 · Compile</text>
+      <text x="14" y="54">θ=4NμL  ρ=4NrL</text><text x="14" y="74">α=2Ns  τ/4N</text><text x="14" y="94">per-file seeds</text>
+    </g>
+    <g transform="translate(400,40)">
+      <rect width="160" height="120" rx="10" fill="#e7f3f1" stroke="#0f7b6c"/>
+      <text x="14" y="28" font-weight="700" font-size="15" fill="#0f7b6c">3 · discoal</text>
+      <text x="14" y="54">patched, bundled</text><text x="14" y="74">all CPU cores</text><text x="14" y="94">resumable</text>
+    </g>
+    <g transform="translate(590,40)">
+      <rect width="160" height="120" rx="10" fill="#fff" stroke="#dfe3ea"/>
+      <text x="14" y="28" font-weight="700" font-size="15">4 · Dataset</text>
+      <text x="14" y="54">.ms per class</text><text x="14" y="74">params_*.csv</text><text x="14" y="94">spec + manifest</text>
+    </g>
+    <g transform="translate(780,40)">
+      <rect width="160" height="120" rx="10" fill="#fff" stroke="#dfe3ea"/>
+      <text x="14" y="28" font-weight="700" font-size="15">5 · Check &amp; use</text>
+      <text x="14" y="54">π, D, H12 plots</text><text x="14" y="74">.npz for CNNs</text><text x="14" y="94">SLURM export</text>
+    </g>
+  </g>
+  <g stroke="#637083" stroke-width="2" marker-end="url(#a)">
+    <line x1="182" y1="100" x2="206" y2="100"/><line x1="372" y1="100" x2="396" y2="100"/>
+    <line x1="562" y1="100" x2="586" y2="100"/><line x1="752" y1="100" x2="776" y2="100"/>
+  </g>
+</svg>

@@ -1,0 +1,29 @@
+diff --git a/discoalFunctions.c b/discoalFunctions.c
+--- a/discoalFunctions.c
++++ b/discoalFunctions.c
+@@ -1761,13 +1761,25 @@
+ 							}
+ 							else{
+ 								initFreq=1.0-(1.0/(2*sizeRatio[0]*EFFECTIVE_POPN_SIZE));
++							}
++							//release the previous sweep's trajectory file
++							if (trajectoryFd != -1) {
++								if (currentTrajectory && currentTrajectory != MAP_FAILED)
++									munmap(currentTrajectory, trajectoryFileSize);
++								close(trajectoryFd);
++								if (trajectoryFilename[0] != '\0') unlink(trajectoryFilename);
++								trajectoryFd = -1;
++								currentTrajectory = NULL;
+ 							}
+ 							//generate a proposed trajectory
+ 							probAccept = proposeTrajectory(currentEventNumber, currentTrajectory, sizeRatio, sweepMode, initFreq, finalFreq, alpha, f0, cTime);
+ 							while(ranf()>probAccept){
++								cleanupRejectedTrajectory(trajectoryFilename);
+ 								probAccept = proposeTrajectory(currentEventNumber, currentTrajectory, sizeRatio, sweepMode, initFreq, finalFreq, alpha, f0, cTime);
+ 								//printf("probAccept: %lf\n",probAccept);
+ 							}
++							//map the accepted trajectory (as main() does for -ws)
++							mmapAcceptedTrajectory(trajectoryFilename, totalTrajectorySteps);
+ 							cTime= sweepPhaseEventsConditionalTrajectory(bpArray, cTime, endTime, curSweepSite,\
+ 								initFreq, finalFreq, &activeSweepFlag, alpha,\
+ 								sizeRatio, sweepMode,0, 0);

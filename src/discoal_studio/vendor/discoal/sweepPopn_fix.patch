@@ -1,0 +1,62 @@
+diff --git a/discoalFunctions.c b/discoalFunctions.c
+index daede2b..8ca397c 100644
+--- a/discoalFunctions.c
++++ b/discoalFunctions.c
+@@ -309,7 +309,7 @@ void migrateAtTime(double cTime,int srcPopn, int destPopn){
+ 	popnSizes[srcPopn]-=1;
+ 	popnSizes[destPopn]+=1;
+ 	if (srcPopn==0)
+-		sweepPopnSizes[temp->sweepPopn]-=1;
++		if (temp->sweepPopn >= 0) sweepPopnSizes[temp->sweepPopn]-=1;
+ 
+ }
+ 
+@@ -320,7 +320,7 @@ void recurrentMutAtTime(double cTime,int srcPopn, int sp){
+         temp = pickNodePopnSweep(srcPopn,sp);
+         temp->sweepPopn = (sp+1)%2;
+         sweepPopnSizes[sp]-=1;
+-        sweepPopnSizes[temp->sweepPopn]+=1;
++        if (temp->sweepPopn >= 0) sweepPopnSizes[temp->sweepPopn]+=1;
+ }
+ 
+ 
+@@ -338,7 +338,7 @@ void migrateExceptSite(double site, double scalar, int srcPopn, int destPopn){
+ 		popnSizes[srcPopn]-=1;
+ 		popnSizes[destPopn]+=1;
+ 		if (srcPopn==0)
+-			sweepPopnSizes[temp->sweepPopn]-=1;
++			if (temp->sweepPopn >= 0) sweepPopnSizes[temp->sweepPopn]-=1;
+ 	}
+ 	
+ 	
+@@ -1859,10 +1859,10 @@ int recombineToLeftPopnSweep(int popn, int sp, double popnFreq){
+ 	rootedNode *aNode;
+ 
+ 	aNode = pickNodePopnSweep(popn, sp);
+-	sweepPopnSizes[aNode->sweepPopn]--;
++	if (aNode->sweepPopn >= 0) sweepPopnSizes[aNode->sweepPopn]--;
+ 
+ 	aNode->sweepPopn = (sp == 0) ? 1:0;
+-	sweepPopnSizes[aNode->sweepPopn]++;
++	if (aNode->sweepPopn >= 0) sweepPopnSizes[aNode->sweepPopn]++;
+ 	return 0;
+ }
+ 
+@@ -2581,7 +2581,7 @@ void addNode(rootedNode *aNode){
+ 	totNodeNumber += 1;
+ 	popnSizes[aNode->population]+=1;
+ 	if(aNode->population==0)
+-		sweepPopnSizes[aNode->sweepPopn]+=1;
++		if (aNode->sweepPopn >= 0) sweepPopnSizes[aNode->sweepPopn]+=1;
+ }
+ 
+ //removeNodeAt-- removes a node given an index   
+@@ -2608,7 +2608,7 @@ void removeNode(rootedNode *aNode){
+ 	}
+ 	popnSizes[aNode->population]-=1;
+ 	if (aNode->population==0)
+-		sweepPopnSizes[aNode->sweepPopn]-=1;
++		if (aNode->sweepPopn >= 0) sweepPopnSizes[aNode->sweepPopn]-=1;
+ 	removeNodeAt(i);
+ }
+ 

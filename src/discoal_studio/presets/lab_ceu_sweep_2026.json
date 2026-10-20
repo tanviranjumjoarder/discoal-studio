@@ -1,0 +1,21 @@
+{
+  "name": "lab_ceu_sweep_2026",
+  "description": "The lab's mother dataset (Athene HPC, Oct 2026): 3,000 neutral + 3,000 hard/soft sweep files, 99 CEU individuals, 1.1 Mb. Reproduces make_dataset.py exactly.",
+  "seed": "20261001",
+  "sample_size": 198,
+  "replicates_per_file": 1,
+  "sites": 1100000,
+  "N":  {"dist": "uniform_int", "low": 5000, "high": 30000},
+  "mu": {"dist": "uniform", "low": 2.21e-9, "high": 2.21e-8},
+  "r":  {"dist": "truncated_exponential", "mean": 1e-8, "upper": 3e-8},
+  "classes": [
+    {"name": "neutral", "count": 3000},
+    {"name": "sweep", "count": 3000, "sweep": {
+      "mode": "stochastic",
+      "s":  {"dist": "loguniform", "low": 0.005, "high": 0.1},
+      "f0": {"dist": "loguniform", "low": "1/(2*N)", "high": 0.2},
+      "tau": {"dist": "fixed", "value": 0},
+      "position": {"dist": "fixed", "value": 0.5}
+    }}
+  ]
+}

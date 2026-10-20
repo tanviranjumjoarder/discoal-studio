@@ -1,0 +1,42 @@
+[project]
+name = "discoal-studio"
+version = "0.2.0"
+description = "Desktop app that builds reproducible discoal selective-sweep datasets on your own computer"
+readme = "README.md"
+license = "GPL-3.0-or-later"
+license-files = ["LICENSE", "NOTICE"]
+requires-python = ">=3.10"
+authors = [{ name = "Tanvir Anjum Joarder" }]
+keywords = ["population genetics", "selective sweeps", "coalescent", "discoal", "simulation", "machine learning"]
+dependencies = [
+    "pydantic>=2.7",
+    "numpy>=1.26",
+    "fastapi>=0.110",
+    "uvicorn>=0.29",
+    "typer>=0.12",
+]
+
+[project.urls]
+Homepage = "https://github.com/tanviranjumjoarder/discoal-studio"
+Documentation = "https://github.com/tanviranjumjoarder/discoal-studio/blob/main/docs/USER_MANUAL.md"
+Issues = "https://github.com/tanviranjumjoarder/discoal-studio/issues"
+
+[project.optional-dependencies]
+desktop = ["pywebview>=5.0"]
+assistant = ["anthropic>=1.0"]
+mcp = ["mcp>=2,<3", "anthropic>=1.0"]
+dev = ["pytest>=8", "httpx>=0.27", "pyinstaller>=6.6", "anthropic>=1.0", "mcp>=2,<3"]
+
+[project.scripts]
+discoal-studio = "discoal_studio.cli:app"
+discoal-studio-mcp = "discoal_studio.mcp_server:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/discoal_studio"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

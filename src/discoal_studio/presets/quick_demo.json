@@ -1,0 +1,16 @@
+{
+  "name": "quick_demo",
+  "description": "Small and fast (about a minute on a laptop): 100 neutral + 100 hard sweep files, 50 haplotypes, 100 kb. Good for a first try.",
+  "seed": "demo",
+  "sample_size": 50,
+  "sites": 100000,
+  "N":  {"dist": "fixed", "value": 10000},
+  "mu": {"dist": "fixed", "value": 1.25e-8},
+  "r":  {"dist": "fixed", "value": 1e-8},
+  "classes": [
+    {"name": "neutral", "count": 100},
+    {"name": "hard", "count": 100, "sweep": {
+      "s": {"dist": "loguniform", "low": 0.005, "high": 0.05}
+    }}
+  ]
+}

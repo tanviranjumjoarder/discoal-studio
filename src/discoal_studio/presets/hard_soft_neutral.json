@@ -1,0 +1,22 @@
+{
+  "name": "hard_soft_neutral",
+  "description": "Three-class problem (neutral / hard sweep / soft sweep from standing variation), with sweeps finished 0 to 2,000 generations ago.",
+  "seed": "hsn",
+  "sample_size": 100,
+  "sites": 200000,
+  "N":  {"dist": "uniform_int", "low": 5000, "high": 20000},
+  "mu": {"dist": "uniform", "low": 5e-9, "high": 2e-8},
+  "r":  {"dist": "truncated_exponential", "mean": 1e-8, "upper": 3e-8},
+  "classes": [
+    {"name": "neutral", "count": 500},
+    {"name": "hard", "count": 500, "sweep": {
+      "s":   {"dist": "loguniform", "low": 0.005, "high": 0.1},
+      "tau": {"dist": "uniform", "low": 0, "high": 2000}
+    }},
+    {"name": "soft", "count": 500, "sweep": {
+      "s":   {"dist": "loguniform", "low": 0.005, "high": 0.1},
+      "f0":  {"dist": "loguniform", "low": 0.01, "high": 0.2},
+      "tau": {"dist": "uniform", "low": 0, "high": 2000}
+    }}
+  ]
+}

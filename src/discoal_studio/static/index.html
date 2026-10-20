@@ -1,0 +1,118 @@
+<!doctype html>
+<!-- SPDX-License-Identifier: GPL-3.0-or-later. Copyright (C) 2026 Tanvir Anjum Joarder. See NOTICE. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="author" content="Tanvir Anjum Joarder">
+<title>discoal Studio</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<header class="top">
+  <div class="brand">
+    <span class="logo" aria-hidden="true"><svg viewBox="0 0 32 32" width="22" height="22"><path d="M3 22c5 0 6-12 13-12s8 12 13 12" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/><circle cx="16" cy="10" r="3.2" fill="currentColor"/></svg></span>
+    <div class="brand-text"><span>discoal <b>Studio</b></span><small id="version" class="muted"></small></div>
+  </div>
+  <nav class="jump" id="jump" aria-label="Sections"></nav>
+  <div class="engine">
+    <span id="engine"></span>
+    <button class="icon" id="theme" title="Light / dark" aria-label="Switch light or dark theme">◐</button>
+    <button class="ghost sm" id="about-open">About &amp; cite</button>
+  </div>
+</header>
+
+<main class="layout">
+  <div class="left">
+    <section class="card ask" id="ask" aria-label="Describe the dataset" data-jump="Describe">
+      <div class="row between"><h3><span class="spark">✦</span> Describe it</h3><span class="small muted" id="ask-note"></span></div>
+      <p class="hint">Say what you want in plain English. Claude fills in the form below for you to review; nothing runs until you press Generate.</p>
+      <div id="chat" class="chat" aria-live="polite"></div>
+      <div class="row gap ask-row">
+        <textarea id="ask-in" rows="2" spellcheck="true"
+          placeholder="e.g. 3000 neutral and 3000 soft sweeps, 99 CEU individuals, 1.1 Mb, N uniform 5k-30k"></textarea>
+        <button id="ask-go" class="primary">Draft</button>
+      </div>
+      <div class="chips" id="ask-examples"></div>
+    </section>
+    <section class="form" id="form" aria-label="Dataset settings"></section>
+  </div>
+
+  <aside class="side">
+    <nav class="tabs" role="tablist">
+      <button role="tab" data-tab="plan" class="on"><i>1</i> Plan</button>
+      <button role="tab" data-tab="run"><i>2</i> Run</button>
+      <button role="tab" data-tab="results"><i>3</i> Check &amp; export</button>
+    </nav>
+
+    <div class="panel" data-panel="plan">
+      <div class="big"><span id="total">0</span> <span class="muted">.ms files</span></div>
+      <div id="dist" class="dist"></div>
+      <div id="warnings"></div>
+      <h4>Example commands the app will run</h4>
+      <div id="examples"></div>
+      <div class="row gap">
+        <button id="estimate" class="ghost">Estimate time &amp; disk</button>
+        <button id="to-run" class="primary">Continue to Run →</button>
+      </div>
+      <div id="estimate-out"></div>
+    </div>
+
+    <div class="panel" data-panel="run" hidden>
+      <label class="field"><span>Output folder</span><input id="out" spellcheck="false"></label>
+      <label class="field"><span>CPU cores to use <small id="cpu-note" class="muted"></small></span>
+        <input id="workers" type="number" min="1"></label>
+      <div class="row gap">
+        <button id="run" class="primary">Generate dataset</button>
+        <button id="stop" class="ghost" hidden>Stop</button>
+        <button id="open" class="ghost">Open folder</button>
+      </div>
+      <div class="progress" id="progress" hidden>
+        <div class="bar"><i id="bar"></i></div>
+        <div class="row between small"><span id="count"></span><span id="eta"></span></div>
+      </div>
+      <p id="run-msg" class="msg"></p>
+      <p class="muted small">Safe to stop or close: finished files are kept, and pressing Generate again continues where it stopped.</p>
+    </div>
+
+    <div class="panel" data-panel="results" hidden>
+      <p class="small muted">Uses the output folder from step 2.</p>
+      <div class="row gap wrap">
+        <button id="qc" class="primary">Run quality check</button>
+        <label class="inline">SNPs <input id="snps" type="number" value="201" min="8"></label>
+        <button id="ml" class="ghost">Export ML arrays (.npz)</button>
+      </div>
+      <p id="res-msg" class="msg"></p>
+      <div id="charts"></div>
+      <details class="hpc">
+        <summary>Run this on an HPC cluster instead</summary>
+        <div class="grid2">
+          <label class="field"><span>Array tasks</span><input id="h-tasks" type="number" value="10" min="1"></label>
+          <label class="field"><span>CPUs per task</span><input id="h-cpus" type="number" value="4" min="1"></label>
+          <label class="field"><span>Memory</span><input id="h-mem" value="8G"></label>
+          <label class="field"><span>Time limit</span><input id="h-time" value="06:00:00"></label>
+          <label class="field"><span>Partition (optional)</span><input id="h-part" placeholder="e.g. shortq7"></label>
+          <label class="field"><span>Save to folder</span><input id="h-folder"></label>
+        </div>
+        <button id="hpc" class="ghost">Write SLURM script + commands.txt</button>
+        <p id="hpc-msg" class="msg"></p>
+      </details>
+    </div>
+  </aside>
+</main>
+
+<footer class="foot">
+  discoal Studio © 2026 Tanvir Anjum Joarder · GPL-3.0-or-later · runs
+  <a href="https://github.com/kr-colab/discoal" target="_blank" rel="noopener">discoal</a> by Kern &amp; Schrider ·
+  <button class="link" id="about-open2">How to cite</button>
+</footer>
+
+<dialog id="about" aria-labelledby="about-title">
+  <div class="dlg-head"><h2 id="about-title">About discoal Studio</h2><button class="icon" id="about-close" aria-label="Close">×</button></div>
+  <div id="about-body"></div>
+</dialog>
+
+<div id="toasts" class="toasts" aria-live="polite"></div>
+<script src="/static/app.js"></script>
+</body>
+</html>

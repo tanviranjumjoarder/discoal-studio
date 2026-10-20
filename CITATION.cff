@@ -1,0 +1,42 @@
+cff-version: 1.2.0
+title: "discoal Studio: reproducible discoal selective-sweep datasets on your own computer"
+message: "If you use this software or data made with it, please cite it and discoal (Kern & Schrider 2016)."
+type: software
+authors:
+  - family-names: Joarder
+    given-names: Tanvir Anjum
+    affiliation: Florida Atlantic University
+    email: tjoarder2026@fau.edu
+version: 0.2.0
+repository-code: "https://github.com/tanviranjumjoarder/discoal-studio"
+url: "https://github.com/tanviranjumjoarder/discoal-studio"
+date-released: "2026-10-20"
+abstract: >-
+  discoal Studio is a desktop application that designs, runs and checks
+  selective-sweep simulation datasets with the coalescent simulator discoal.
+  Users describe a dataset in physical units (or in plain English); the app
+  compiles one reproducible discoal command per file, covering every discoal
+  option, runs them in parallel on a laptop or exports them for SLURM, and
+  provides quality-check statistics and machine-learning arrays.
+keywords:
+  - population genetics
+  - selective sweeps
+  - coalescent simulation
+  - discoal
+  - machine learning
+license: GPL-3.0-or-later
+references:
+  - type: article
+    title: "Discoal: flexible coalescent simulations with selection"
+    authors:
+      - family-names: Kern
+        given-names: Andrew D.
+      - family-names: Schrider
+        given-names: Daniel R.
+    journal: Bioinformatics
+    volume: 32
+    issue: 24
+    start: 3839
+    end: 3841
+    year: 2016
+    doi: 10.1093/bioinformatics/btw556

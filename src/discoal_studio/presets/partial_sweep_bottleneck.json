@@ -1,0 +1,22 @@
+{
+  "name": "partial_sweep_bottleneck",
+  "description": "Illustrative example: neutral vs partial sweeps (stopped at 50-90%) under a bottleneck, to test how demography confounds sweep detection. The demography is made up for illustration; replace it with your population's model.",
+  "seed": "psb",
+  "sample_size": 100,
+  "sites": 200000,
+  "N":  {"dist": "fixed", "value": 10000},
+  "mu": {"dist": "fixed", "value": 1.25e-8},
+  "r":  {"dist": "fixed", "value": 1e-8},
+  "demography": [
+    {"generations_ago": {"dist": "uniform", "low": 1000, "high": 4000}, "size": {"dist": "loguniform", "low": 500, "high": 5000}},
+    {"generations_ago": {"dist": "fixed", "value": 8000}, "size": {"dist": "fixed", "value": 10000}}
+  ],
+  "classes": [
+    {"name": "neutral", "count": 300},
+    {"name": "partial", "count": 300, "sweep": {
+      "s": {"dist": "loguniform", "low": 0.01, "high": 0.1},
+      "partial_final_freq": {"dist": "uniform", "low": 0.5, "high": 0.9},
+      "position": {"dist": "uniform", "low": 0.4, "high": 0.6}
+    }}
+  ]
+}

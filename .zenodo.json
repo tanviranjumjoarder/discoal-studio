@@ -1,0 +1,10 @@
+{
+  "title": "discoal Studio: reproducible discoal selective-sweep datasets on your own computer",
+  "upload_type": "software",
+  "creators": [{"name": "Joarder, Tanvir Anjum", "affiliation": "Florida Atlantic University"}],
+  "license": "GPL-3.0-or-later",
+  "keywords": ["population genetics", "selective sweeps", "coalescent simulation", "discoal", "machine learning"],
+  "related_identifiers": [
+    {"identifier": "10.1093/bioinformatics/btw556", "relation": "requires", "resource_type": "publication-article"}
+  ]
+}
