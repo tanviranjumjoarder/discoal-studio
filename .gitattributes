@@ -3,3 +3,6 @@ tests/data/** -text
 *.ms -text
 # Shell scripts must keep LF to run in Git Bash on Windows.
 *.sh text eol=lf
+# GitHub language stats: .ms files are discoal output, not 3ds Max scripts; discoal's C is vendored.
+*.ms linguist-detectable=false
+src/discoal_studio/vendor/** linguist-vendored
