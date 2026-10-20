@@ -472,14 +472,12 @@ To check a dataset, run `discoal-studio verify <folder>`. It re-simulates a few 
 compares them byte for byte.
 
 discoal is compiled with `-O3` and no CPU-specific optimisation, so the same spec gives the same
-`.ms` files on different machines. The `lab_ceu_sweep_2026` preset was made on a Linux cluster and
-reproduces byte for byte on macOS. Two caveats:
+`.ms` files on every system. The `lab_ceu_sweep_2026` preset was first made on a Linux cluster; the
+test suite reproduces its files byte for byte on Linux, macOS and Windows on every push.
 
-- In the CSV tables, a few floating-point values can differ in the 17th significant digit between
-  operating systems, because their maths libraries round `exp`/`log` differently. The commands
-  (10 digits) and the `.ms` files are unaffected.
-- Windows builds use a different C runtime. The test suite checks the reference files on Windows
-  too, so check the test results for your release before assuming bit-identity across systems.
+One small caveat: in the CSV tables, a few floating-point values can differ in the 17th significant
+digit between operating systems, because their maths libraries round `exp`/`log` differently. The
+commands (10 digits) and the `.ms` files are unaffected.
 
 ---
 

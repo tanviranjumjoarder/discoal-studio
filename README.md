@@ -66,8 +66,8 @@ turns that script into a tested, reproducible tool:
 
 > **Exact reproduction.** The built-in preset `lab_ceu_sweep_2026` regenerates a
 > 6,000-file dataset first made on a Linux HPC cluster. On a Mac, all 6,000 `.ms`
-> files come out **byte-identical** to the originals in 9 minutes on 7 cores. The test
-> suite checks this on every push.
+> files come out **byte-identical** to the originals in 9 minutes on 7 cores, and the
+> test suite checks the same byte-for-byte match on Linux, macOS and Windows on every push.
 
 ## Screenshots
 
