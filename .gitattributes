@@ -1,0 +1,5 @@
+# Reference outputs are compared byte for byte: never convert their line endings.
+tests/data/** -text
+*.ms -text
+# Shell scripts must keep LF to run in Git Bash on Windows.
+*.sh text eol=lf
