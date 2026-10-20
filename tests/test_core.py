@@ -91,10 +91,22 @@ def test_bad_input_gives_plain_warning():
 
 
 # -- running ----------------------------------------------------------------------
-def test_byte_identical_to_hpc_files(binary, tmp_path):
+def _first_difference(a: Path, b: Path) -> str:
+    x, y = a.read_bytes(), b.read_bytes()
+    if b"\r\n" in x:
+        return "made file has CRLF line endings"
+    lx, ly = x.split(b"\n"), y.split(b"\n")
+    for k, (p, q) in enumerate(zip(lx, ly)):
+        if p != q:
+            return f"line {k + 1} differs: {p[:80]!r} vs reference {q[:80]!r}"
+    return f"same lines, lengths {len(lx)} vs {len(ly)}"
+
+
+@pytest.mark.parametrize("rel", ["Neutral/neutral_1.ms", "Sweep/sweep_1.ms"])
+def test_byte_identical_to_hpc_files(binary, tmp_path, rel):
     Runner(tiny(lab(), 1), tmp_path, workers=2, binary=binary).run()
-    assert filecmp.cmp(tmp_path / "Sweep/sweep_1.ms", DATA / "sweep_1.ms", shallow=False)
-    assert filecmp.cmp(tmp_path / "Neutral/neutral_1.ms", DATA / "neutral_1.ms", shallow=False)
+    made, ref = tmp_path / rel, DATA / Path(rel).name
+    assert filecmp.cmp(made, ref, shallow=False), _first_difference(made, ref)
 
 
 def test_resume_and_shards(binary, tmp_path):
